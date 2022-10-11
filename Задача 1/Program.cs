@@ -1,6 +1,9 @@
-﻿//Напишите программу, которая 
-//принимает на вход число (N) и выдаёт 
-// таблицу кубов чисел от 1 до N.
+﻿
+//Напишите программу, в которой пользователь
+// задает длину массива, элементы которого 
+//задаются в диапазоне [1,99] и выводит на экран .
+//5 -> [1, 2, 5, 7, 19]
+//3 -> [6, 1, 33]
 
 int getNumberFromUser(string UserInformation)
 {
@@ -12,7 +15,7 @@ int getNumberFromUser(string UserInformation)
         int.TryParse(userLine, out result);
         if (result <= 0)
         {
-            Console.WriteLine($"Введите целое число от 1 до N, вы ввели некорректное значение: {userLine}");
+            Console.WriteLine($"Введите целое число > 0, вы ввели некорректное значение: {userLine}");
         }
         else
         {
@@ -21,9 +24,28 @@ int getNumberFromUser(string UserInformation)
     }
     return result;
 }
-int number = getNumberFromUser("Введите целое число от 1 до N: ");
 
-for (int i = 1; i <= number; i++)
+int number = getNumberFromUser("Задайте длинну массива: ");
+
+int[] array = new int[number + 1];
+
+for (int i = 0; i < array.Length; i++)
 {
-   Console.WriteLine ($"Для числа {i} куб равен {Math.Pow(i, 3)}"); 
+    array[i] = new Random().Next(1, 99);
+}
+
+PrintArray(array);
+
+void PrintArray(int[] array)
+{
+    Console.Write($"Эллементы массива длинной {number} -> [");
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i]);
+        if (i < array.Length - 1)
+        {
+            Console.Write(",");
+        }
+    }
+    Console.WriteLine("]");
 }
